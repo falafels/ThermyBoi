@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>Welcome to ThermyBoi!</h1>
+<h2>Select your currect room:</h2>
+
+<select name= colours method="GET" action="/">
+    {% for room in rooms %}
+    <option value= "{{room}}" SELECTED>{{room}}</option>"
+    {% endfor %}
+</select>
+
+</select>
+</body>
+</html>
