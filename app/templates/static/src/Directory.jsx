@@ -4,10 +4,30 @@ import {withRouter} from 'react-router-dom';
 export class Directory extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            posts: [],
+            lon: 0,
+            lat: 0
+        }
+
     }
 
     componentDidMount = () => {
+        this.getLocation();
+    }
 
+    getLocation = () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(this.showPosition);
+        } else { 
+            alert('Geolocation Not supported by current browser');
+        }
+    }
+
+    showPosition = (position) => {
+        this.setState({lon: position.coords.longitude});
+        this.setState({lat: position.coords.latitude});
     }
 
     signOut = () => {
@@ -25,6 +45,12 @@ export class Directory extends Component {
                     LOGGED IN !!!
                 </p>
                 <button onClick={this.signOut}>Sign Out</button>
+                <p>
+                    Longitude: {this.state.lon}
+                </p>
+                <p>
+                    Latitude: {this.state.lat}
+                </p>
             </div>
         )
     }
