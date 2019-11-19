@@ -1,20 +1,32 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom';
+import ApiService from "./api/ApiService.jsx";
 
 export class Directory extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            posts: [],
+            rooms: [],
             lon: 0,
-            lat: 0
+            lat: 0,
+            isLoaded: false
         }
 
+        this.apiService = new ApiService();
     }
 
     componentDidMount = () => {
         this.getLocation();
+        this.apiService.getRooms()
+        .then(response => response.data)
+        .then(data => {
+            this.setState({
+                rooms: data,
+                isLoaded: true
+            });
+        })
+        .catch(err => console.log(err))
     }
 
     getLocation = () => {
@@ -39,18 +51,25 @@ export class Directory extends Component {
     }
 
     render() {
+        var {rooms, lon, lat, isLoaded} = this.state;
+        
         return (
             <div>
                 <p>
                     LOGGED IN !!!
                 </p>
+                <ul>
+                    {isLoaded ? rooms.map(room => (
+                        <li key={room.toString()}>{room.toString()}</li>
+                    )): "NOT THERE YET"}
+                </ul>
+                <p>
+                    Longitude: {lon}
+                </p>
+                <p>
+                    Latitude: {lat}
+                </p>
                 <button onClick={this.signOut}>Sign Out</button>
-                <p>
-                    Longitude: {this.state.lon}
-                </p>
-                <p>
-                    Latitude: {this.state.lat}
-                </p>
             </div>
         )
     }
