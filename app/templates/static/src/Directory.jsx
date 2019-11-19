@@ -12,10 +12,10 @@ export class Directory extends Component {
 
     signOut = () => {
         var auth2 = window.gapi.auth2.getAuthInstance();
-        auth2.signOut().then(function () {
+        auth2.signOut().then( () => {
           console.log('User signed out.');
+          this.props.history.push('/login');
         });
-        this.props.history.push('/login');
     }
 
     render() {
