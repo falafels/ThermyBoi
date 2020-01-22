@@ -13,7 +13,7 @@ const Content = () => (
     <br/>
     <div>
       <p className="lead text-center">
-        Welcome to <em>Themaly</em>, if you don't feel satsified with the current temperature during your lecture. You can submit a vote to whatever you'd like! To procede please log in and go to the Voting Page.
+        Welcome to <em>Thermaly</em>, if you don't feel satsified with the current temperature during your lecture, you can submit a temperature vote to whatever you'd like! To proceed please log in and go to the Voting Page.
       </p>
     </div>
   </Container>

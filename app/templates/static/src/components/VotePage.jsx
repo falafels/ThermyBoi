@@ -68,20 +68,24 @@ export class VotePage extends Component {
             <div>
                 <Container>
                     <div>
-                        <div className="text-center">
-                            <h1 className="mb-4"> You are in ITB!</h1>
+                        <div className="row justify-content-center">
+                            <h1>Select a Temperature and Submit!</h1>
+                        </div>
+                        <div className="">
+                            <h2 className="mb-4"> You are in ITB!</h2>
                             <br/>
                         </div>
-                        <div className="row h-100 justify-content-center">
-                            <div id="map-canvas" className="col-8">
+                        <div className="row h-100">
+                            <div id="map-canvas" className="col-4">
                                 { lon !== 0
                                 &&
                                 <MapContainer lon={lon} lat={lat} />
                                 }
                             </div>
-                            <div id="votingSystem" className="col-4">
+                            <div id="votingSystem" className="col-8">
                                 <div className="row">
-                                    <div className="col-12">
+                                    <div className="col-8 justify-content-center center-block align-items-center">
+                                        <div className="text-center">
                                         <Button
                                             color="light"
                                             onClick={this.increaseTemp}
@@ -89,15 +93,30 @@ export class VotePage extends Component {
                                         >
                                             <FontAwesomeIcon icon="arrow-up" size="6x" color="deepskyblue"/>
                                         </Button>
-                                    </div>
-                                    <div className="col-12">
-                                        <div className="row align-items-center">
-                                            <div className="col-6">
-                                                <h5 className="d-inline-flex display-4 temp-val">
+                                        </div>
+                                        <div className="center_text">
+                                                <h5 className="d-inline-flex display-4">
                                                     {temp}
                                                 </h5>
-                                            </div>
-                                            <div className="col-6">
+                                        </div>
+                                        <div className="text-center">
+                                        <Button
+                                            color="light"
+                                            onClick={this.decreaseTemp}
+                                            className="btn-fix"
+                                        >
+                                            <FontAwesomeIcon icon="arrow-down" size="6x" color="deepskyblue"/>
+                                        </Button>
+                                        </div>
+
+                                    </div>
+                                    <div className="col-4">
+                                        <div className="row">
+                                            <p>The current temperature in the room is: 24 degrees C</p>
+                                        </div>
+                                        <div className="row align-items-center">
+
+                                            <div className="bottom">
                                                 <Button
                                                     color="primary"
                                                     size="lg"
@@ -108,15 +127,6 @@ export class VotePage extends Component {
                                                 </Button>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div className="col-12">
-                                        <Button
-                                            color="light"
-                                            onClick={this.decreaseTemp}
-                                            className="btn-fix"
-                                        >
-                                            <FontAwesomeIcon icon="arrow-down" size="6x" color="deepskyblue"/>
-                                        </Button>
                                     </div>
                                 </div>
                             </div>
