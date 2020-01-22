@@ -1,0 +1,53 @@
+@import "~bootstrap";
+
+
+.next-steps .fa-link {
+  margin-right: 5px;
+}
+
+/* Fix for use only flexbox in content area */
+.next-steps .row {
+  margin-bottom: 0;
+}
+
+.next-steps .col-md-5 {
+  margin-bottom: 3rem;
+}
+
+@media (max-width: 768px) {
+  .next-steps .col-md-5 {
+    margin-bottom: 0;
+  }
+}
+
+$mynewcolor:white;
+
+.btn-light {
+    @include button-variant($mynewcolor, darken($mynewcolor, 2%), darken($mynewcolor, 3%), lighten($mynewcolor,1%), lighten($mynewcolor, 3%), darken($mynewcolor,5%));
+    border: none;
+}
+
+.btn-fix {
+  padding: 0;
+}
+
+.temp-val {
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.spinner {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: white;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}

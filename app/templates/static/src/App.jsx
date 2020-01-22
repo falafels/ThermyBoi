@@ -1,17 +1,45 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import LoginPage from "./LoginPage.jsx";
-import Directory from "./Directory.jsx";
+import { Router, Route, Switch } from "react-router-dom";
+import { Container } from "reactstrap";
 
-export default class App extends React.Component {
-    render () {
-        return (
-            <div>
-                <Router>
-                    <Route exact path="/login" component={LoginPage} />
-                    <Route exact path="/directory" component={Directory} />
-                </Router>
-            </div>
-        );
-    }
-}
+import PrivateRoute from "./components/PrivateRoute";
+import Loading from "./components/Loading";
+import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
+import Home from "./components/Home";
+import VotePage from "./components/VotePage";
+import { useAuth0 } from "./react-auth0-spa";
+import history from "./utils/history";
+
+// styles
+import "./App.scss";
+
+// fontawesome
+import initFontAwesome from "./utils/initFontAwesome";
+initFontAwesome();
+
+const App = () => {
+  const { loading } = useAuth0();
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  return (
+    <Router history={history}>
+      <div id="app" className="d-flex flex-column h-100">
+        <NavBar />
+        <Container className="flex-grow-1 mt-5">
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <PrivateRoute path="/votepage" component={VotePage} />
+          </Switch>
+        </Container>
+        <br/>
+        <Footer />
+      </div>
+    </Router>
+  );
+};
+
+export default App;
