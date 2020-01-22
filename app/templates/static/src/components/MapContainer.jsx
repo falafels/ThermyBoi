@@ -3,7 +3,7 @@ import {Map, GoogleApiWrapper, Marker} from 'google-maps-react';
  
 const mapStyles = {
     width: '90%',
-    height: '90%',
+    height: '100%',
   };
 
 export class MapContainer extends Component {
@@ -15,11 +15,12 @@ export class MapContainer extends Component {
         return (
             <Map
                 google={this.props.google}
-                zoom={15}
+                zoom={16}
                 style={mapStyles}
-                initialCenter={{ lat: this.props.lat, lng: this.props.lon}}
+                // initialCenter={{ lat: this.props.lat, lng: this.props.lon}}
+                initialCenter={{ lat: 43.259003, lng: -79.920766}}
             >
-                <Marker position={{ lat: this.props.lat, lng: this.props.lon}} />
+                <Marker position={{ lat: 43.259003, lng: -79.920766}} />
             </Map>
         );
     }

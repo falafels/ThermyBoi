@@ -69,16 +69,16 @@ export class VotePage extends Component {
                 <Container>
                     <div>
                         <div className="text-center">
-                            <h1 className="mb-4"> You are in ITB 137!</h1>
+                            <h1 className="mb-4"> You are in ITB!</h1>
                             <br/>
                         </div>
-                        <div className="row justify-content-center">
+                        <div className="row h-100 justify-content-center">
                             <div id="map-canvas" className="col-8">
-                            { lon != 0
-                             &&
-                             <MapContainer lon={lon} lat={lat} />
-                            }
-                        </div>
+                                { lon !== 0
+                                &&
+                                <MapContainer lon={lon} lat={lat} />
+                                }
+                            </div>
                             <div id="votingSystem" className="col-4">
                                 <div className="row">
                                     <div className="col-12">

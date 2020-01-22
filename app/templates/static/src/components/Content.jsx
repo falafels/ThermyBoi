@@ -1,17 +1,22 @@
 import React from "react";
 
 import logo from "../assets/logo.svg";
+import mainLogo from '../assets/logo_transparent.png';
+import { Container } from "reactstrap";
 
 const Content = () => (
-  <div className="text-center hero my-5">
-    <img className="mb-3 app-logo" src={logo} alt="React logo" width="120" />
-    <h1 className="mb-4">ThemyBoi</h1>
-
-    <p className="lead">
-      This is a sample application that demonstrates an authentication flow for
-      an SPA, using <a href="https://reactjs.org">React.js</a>
-    </p>
-  </div>
+  <Container>
+    <div className="text-center hero my-7">
+      <img className="img-fluid title-img " src={mainLogo} alt="Logo" />
+      <h6 className=""> Crowdsourced Thermostat </h6>
+    </div>
+    <br/>
+    <div>
+      <p className="lead text-center">
+        Welcome to <em>Themaly</em>, if you don't feel satsified with the current temperature during your lecture. You can submit a vote to whatever you'd like! To procede please log in and go to the Voting Page.
+      </p>
+    </div>
+  </Container>
 );
 
 export default Content;
