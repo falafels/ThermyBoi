@@ -1,6 +1,5 @@
 import React from "react";
 
-import logo from "../assets/logo.svg";
 import mainLogo from '../assets/logo_transparent.png';
 import { Container } from "reactstrap";
 

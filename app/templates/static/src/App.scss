@@ -27,6 +27,14 @@
 
 $mynewcolor:white;
 
+.my-logo {
+  background-image: url("./assets/logo_icon.png");
+  width: 2rem;
+  height: 2.25rem;
+  background-repeat: no-repeat;
+  background-size: cover
+}
+
 .btn-light {
     @include button-variant($mynewcolor, darken($mynewcolor, 2%), darken($mynewcolor, 3%), lighten($mynewcolor,1%), lighten($mynewcolor, 3%), darken($mynewcolor,5%));
     border: none;

@@ -1,10 +1,11 @@
 import React from "react";
+import logo from "../assets/logo_icon.png";
 
 const Footer = () => (
   <footer className="bg-light p-3 text-center">
-    <div className="logo" />
+    <img className="mb-3 app-logo" src={logo} alt="React logo" width="30" />
     <p>
-      Sample project provided by <a href="https://auth0.com">Auth0</a>
+      4G06B - Group 2
     </p>
   </footer>
 );
