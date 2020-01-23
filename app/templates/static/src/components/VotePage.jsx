@@ -1,12 +1,15 @@
-import React, { Component } from 'react';
+import React,{ Component } from 'react';
 import {withRouter} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ApiService from "../api/ApiService";
 import MapContainer from "./MapContainer";
+import { Alert } from 'reactstrap';
 
 import {
     Button, Container,
 } from "reactstrap";
+
+
 
 export class VotePage extends Component {
     constructor(props) {
@@ -17,7 +20,8 @@ export class VotePage extends Component {
             temp: 23,
             lon: 0,
             lat: 0,
-            isLoaded: false
+            isLoaded: false,
+            show: false,
         }
 
         this.apiService = new ApiService();
@@ -62,8 +66,8 @@ export class VotePage extends Component {
     }
 
     render() {
-        var {rooms, lon, lat, isLoaded, temp} = this.state;
-        
+        var {rooms, lon, lat, isLoaded, temp} = this.state; 
+
         return (
             <div>
                 <Container>
@@ -121,16 +125,28 @@ export class VotePage extends Component {
                                                     color="primary"
                                                     size="lg"
                                                     className="align-middle float-right"
-                                                    disabled={temp > 28 || temp < 18}
-                                                >
-                                                    Submit 
+                                                    disabled={temp > 28 || temp < 18 || this.state.show}
+                                                    onClick={() => this.setState({ show: true })}>
+                                                      Submit
                                                 </Button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
+
+                        <div>
+                        <Alert isOpen={this.state.show} color="success" className="margin_top">
+                            <h4 className="alert-heading">Your vote has been submitted!</h4>
+                            <p>
+                            Your vote has been included in updating the temperature for the selected room!
+                            You can submit another vote in your next lecture time.
+                            </p>
+                        </Alert>
+                        </div>
+
                     </div>
                 </Container>
             </div>
