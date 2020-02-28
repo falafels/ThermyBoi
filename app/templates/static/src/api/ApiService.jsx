@@ -1,7 +1,14 @@
-import axios from 'axios'
+import API from './API';
+import { string } from 'prop-types';
 
 export default class ApiService {
-    getRooms = (callback) => {
-        return axios.get('http://127.0.0.1:5000/getRooms');
+    getTemp = () => {
+        return API.get('/get');
+    }
+
+    postTemp = (temp) => {
+        return API.post('/post', null,{ params: {
+            'temp': temp
+          }});
     }
 }

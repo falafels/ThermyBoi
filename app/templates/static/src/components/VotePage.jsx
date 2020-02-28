@@ -16,7 +16,7 @@ export class VotePage extends Component {
         super(props);
 
         this.state = {
-            rooms: [],
+            currentTemp: 23,
             temp: 23,
             lon: 0,
             lat: 0,
@@ -29,11 +29,14 @@ export class VotePage extends Component {
 
     componentDidMount = () => {
         this.getLocation();
-        this.apiService.getRooms()
+        this.getTemp();
+    }
+    getTemp = () => {
+        this.apiService.getTemp()
         .then(response => response.data)
         .then(data => {
             this.setState({
-                rooms: data,
+                currentTemp: data,
                 isLoaded: true
             });
         })
@@ -65,8 +68,20 @@ export class VotePage extends Component {
         this.setState({lat: position.coords.latitude});
     }
 
+    submitTemp = () => {
+        let x = this.state.temp;
+        this.apiService.postTemp(x)
+        .then(() => {
+            this.setState({
+                show: true,
+            });
+        })
+        .catch(err => console.log(err));
+        this.getTemp();
+    }
+ 
     render() {
-        var {rooms, lon, lat, isLoaded, temp} = this.state; 
+        var {lon, lat} = this.state; 
 
         return (
             <div>
@@ -100,7 +115,7 @@ export class VotePage extends Component {
                                         </div>
                                         <div className="center_text">
                                                 <h5 className="d-inline-flex display-4">
-                                                    {temp}
+                                                    {this.state.temp}
                                                 </h5>
                                         </div>
                                         <div className="text-center">
@@ -116,7 +131,7 @@ export class VotePage extends Component {
                                     </div>
                                     <div className="col-4">
                                         <div className="row">
-                                            <p>The current temperature in the room is: 24 degrees C</p>
+                                            <p>The current temperature in the room is: {this.state.currentTemp} degrees C</p>
                                         </div>
                                         <div className="row align-items-center">
 
@@ -125,8 +140,8 @@ export class VotePage extends Component {
                                                     color="primary"
                                                     size="lg"
                                                     className="align-middle float-right"
-                                                    disabled={temp > 28 || temp < 18 || this.state.show}
-                                                    onClick={() => this.setState({ show: true })}>
+                                                    // disabled={temp > 28 || temp < 18 || this.state.show}
+                                                    onClick={this.submitTemp}>
                                                       Submit
                                                 </Button>
                                             </div>
