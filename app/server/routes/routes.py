@@ -10,9 +10,9 @@ CORS(app)
 
 calc = Engine()
 
-@app.route('/')
-def index():
-    return render_template('index.html')
+# @app.route('/')
+# def index():
+#     return render_template('index.html')
 
 @app.route('/get')
 def getTemp():
