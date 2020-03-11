@@ -17,10 +17,10 @@ export class MapContainer extends Component {
                 google={this.props.google}
                 zoom={16}
                 style={mapStyles}
-                // initialCenter={{ lat: this.props.lat, lng: this.props.lon}}
-                initialCenter={{ lat: 43.259003, lng: -79.920766}}
+                initialCenter={{ lat: this.props.lat, lng: this.props.lon}}
+                // initialCenter={{ lat: 43.259003, lng: -79.920766}}
             >
-                <Marker position={{ lat: 43.259003, lng: -79.920766}} />
+                <Marker position={{ lat: this.props.lat, lng: this.props.lon}} />
             </Map>
         );
     }
