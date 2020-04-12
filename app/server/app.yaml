@@ -1,5 +1,5 @@
 runtime: python37
 service: flask-server
-entrypoint: gunicorn -b :$PORT -w 2 server:app
+entrypoint: gunicorn -b :$PORT -w 1 server:app
 env_variables:
     ENV: "production"
