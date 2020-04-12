@@ -1,14 +1,19 @@
 import time
 from .engine import Engine
-import datetime, threading, time
+import datetime, threading, time, os
 
-intervalMins = 15
+intervalMins = 10
 
 def work():
     next_call = time.time()
     while True:
-        # next_call = next_call+(60*intervalMins)   PROD
-        next_call = next_call+20    # For Testing purposes
+        if "ENV" in os.environ:
+            if os.environ['ENV'] == "production":
+                next_call = next_call+(60*intervalMins)
+            else:
+                next_call = next_call+20
+        else:
+            next_call = next_call+20        # DEBUG
         time.sleep(next_call - time.time())
         Engine.execute_calculation()
 

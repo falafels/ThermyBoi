@@ -1,6 +1,3 @@
-# GCP Stuff
-app.yaml
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -30,5 +27,3 @@ instance/
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
-
-test/
