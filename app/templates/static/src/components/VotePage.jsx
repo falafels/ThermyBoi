@@ -17,6 +17,7 @@ export class VotePage extends Component {
 
         this.state = {
             currentTemp: 23,
+            setTemp: 23,
             temp: 23,
             lon: 0,
             lat: 0,
@@ -28,15 +29,35 @@ export class VotePage extends Component {
     }
 
     componentDidMount = () => {
+        this.intervalId = setInterval(() => this.getSetTemp(),30000);
+        this.intervalId2 = setInterval(() => this.getCurrentTemp(),30000);
         this.getLocation();
-        this.getTemp();
     }
-    getTemp = () => {
+
+    componentWillUnmount(){
+        clearInterval(this.intervalId);
+        clearInterval(this.intervalId2);
+      }
+
+    getSetTemp = () => {
         this.apiService.getTemp()
         .then(response => response.data)
         .then(data => {
             this.setState({
+                setTemp: data,
+                isLoaded: true
+            });
+        })
+        .catch(err => console.log(err))
+    }
+
+    getCurrentTemp = () => {
+        this.apiService.getCurrentTemp()
+        .then(response => response.data)
+        .then(data => {
+            this.setState({
                 currentTemp: data,
+                temp: data,
                 isLoaded: true
             });
         })
@@ -75,9 +96,10 @@ export class VotePage extends Component {
             this.setState({
                 show: true,
             });
+            this.getCurrentTemp();
         })
         .catch(err => console.log(err));
-        this.getTemp();
+        this.getCurrentTemp();
     }
  
     render() {
@@ -109,8 +131,9 @@ export class VotePage extends Component {
                                             color="light"
                                             onClick={this.increaseTemp}
                                             className="btn-fix"
+                                            disabled={this.state.temp >= 28}
                                         >
-                                            <FontAwesomeIcon icon="arrow-up" size="6x" color="deepskyblue"/>
+                                            <FontAwesomeIcon icon="arrow-up" size="6x" color="#007bff"/>
                                         </Button>
                                         </div>
                                         <div className="center_text">
@@ -123,15 +146,21 @@ export class VotePage extends Component {
                                             color="light"
                                             onClick={this.decreaseTemp}
                                             className="btn-fix"
+                                            disabled={this.state.temp <= 18}
                                         >
-                                            <FontAwesomeIcon icon="arrow-down" size="6x" color="deepskyblue"/>
+                                            <FontAwesomeIcon icon="arrow-down" size="6x" color="#007bff"/>
                                         </Button>
                                         </div>
 
                                     </div>
                                     <div className="col-4">
                                         <div className="row">
-                                            <p>The current temperature in the room is: {this.state.currentTemp} degrees C</p>
+                                            <p>The current temperature in the room is:</p>
+                                            <p>{this.state.currentTemp} degrees C</p>
+                                        </div>
+                                        <div className="row">
+                                            <p>The room will be set to:</p>
+                                            <p>{this.state.setTemp} degrees C</p>
                                         </div>
                                         <div className="row align-items-center">
 
@@ -140,7 +169,7 @@ export class VotePage extends Component {
                                                     color="primary"
                                                     size="lg"
                                                     className="align-middle float-right"
-                                                    // disabled={temp > 28 || temp < 18 || this.state.show}
+                                                    disabled={this.state.temp > 28 || this.state.temp < 18 || this.state.show}
                                                     onClick={this.submitTemp}>
                                                       Submit
                                                 </Button>

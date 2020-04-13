@@ -6,6 +6,10 @@ export default class ApiService {
         return API.get('/get');
     }
 
+    getCurrentTemp = () => {
+        return API.get('/getCurrentTemp');
+    }
+
     postTemp = (temp) => {
         return API.post('/post', null,{ params: {
             'temp': temp

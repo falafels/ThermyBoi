@@ -13,7 +13,7 @@ def work():
             else:
                 next_call = next_call+60
         else:
-            next_call = next_call+60        # DEBUG
+            next_call = next_call+20        # DEBUG
         time.sleep(next_call - time.time())
         Engine.execute_calculation()
 
