@@ -16,6 +16,7 @@ import "./App.scss";
 
 // fontawesome
 import initFontAwesome from "./utils/initFontAwesome";
+import Profile from "./components/Profile";
 initFontAwesome();
 
 const App = () => {
@@ -33,6 +34,7 @@ const App = () => {
           <Switch>
             <Route path="/" exact component={Home} />
             <PrivateRoute path="/votepage" component={VotePage} />
+            <PrivateRoute path="/profile" component={Profile} />
           </Switch>
         </Container>
         <br/>

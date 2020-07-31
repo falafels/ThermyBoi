@@ -2,7 +2,7 @@ import time
 from .engine import Engine
 import datetime, threading, time, os
 
-intervalMins = 10
+intervalMins = 1
 
 def work():
     next_call = time.time()

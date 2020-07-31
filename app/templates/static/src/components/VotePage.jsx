@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ApiService from "../api/ApiService";
 import MapContainer from "./MapContainer";
 import { Alert } from 'reactstrap';
+import { Auth0Context } from "../react-auth0-spa";
+import config from "../auth_config.json";
 
 import {
     Button, Container,
@@ -23,12 +25,15 @@ export class VotePage extends Component {
             lat: 0,
             isLoaded: false,
             show: false,
+            access_token: config.tokId
         }
 
         this.apiService = new ApiService();
     }
 
     componentDidMount = () => {
+        this.getSetTemp();
+        this.getCurrentTemp();
         this.intervalId = setInterval(() => this.getSetTemp(),30000);
         this.intervalId2 = setInterval(() => this.getCurrentTemp(),30000);
         this.getLocation();
@@ -90,8 +95,7 @@ export class VotePage extends Component {
     }
 
     submitTemp = () => {
-        let x = this.state.temp;
-        this.apiService.postTemp(x)
+        this.apiService.postTemp(this.state.temp, this.state.access_token)
         .then(() => {
             this.setState({
                 show: true,
@@ -197,5 +201,7 @@ export class VotePage extends Component {
         )
     }
 }
+
+VotePage.contextType = Auth0Context;
 
 export default withRouter(VotePage)

@@ -20,6 +20,8 @@ var/
 .installed.cfg
 *.egg
 
+auth_config.json
+
 # Flask stuff:
 instance/
 .webassets-cache
